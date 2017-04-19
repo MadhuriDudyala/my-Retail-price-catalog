@@ -59,5 +59,13 @@ public class ProductPriceInfo {
 	public void setId(long id) {
 		this.id = id;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "ProductPriceInfo [id=" + id + ", value=" + value + ", currency_code=" + currency_code + "]";
+	}
 	
 }

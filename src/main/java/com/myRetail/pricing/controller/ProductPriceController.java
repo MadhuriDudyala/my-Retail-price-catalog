@@ -45,7 +45,17 @@ public class ProductPriceController {
 		return new ResponseEntity<ProductPriceInfo>( productPriceInfo , HttpStatus.OK);
 	}
 
-
+	@RequestMapping(value="/price/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<?> updateProductPriceInfo(@PathVariable("id") long id, @RequestBody Map<String, Object> productMap) { 		
+		ProductPriceInfo productPriceInfo = new ProductPriceInfo();
+		productPriceInfo.setValue( (Double) productMap.get("value") );
+		productPriceInfo.setCurrency_code( (String) productMap.get("currency_code") );		
+		productPriceInfo.setId(id);
+		productPriceService.saveProductPrice(productPriceInfo);		
+		return new ResponseEntity<ProductPriceInfo>( productPriceInfo , HttpStatus.OK);
+	}
+	
+	// Below method is for to insert some test records in the database 	
 	@RequestMapping(method = RequestMethod.POST)	
 	public ResponseEntity<?> createProductPriceInfo(@RequestBody Map<String, Object> productMap){
 
@@ -61,16 +71,6 @@ public class ProductPriceController {
 	public ResponseEntity<?> getAllProducts() {		
 		List<ProductPriceInfo> productPriceInfos = productPriceService.getAllProducts();
 		return new ResponseEntity<List<ProductPriceInfo>>( productPriceInfos , HttpStatus.OK);
-	}
-
-	@RequestMapping(value="/price/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<?> updateProductPriceInfo(@PathVariable("id") long id, @RequestBody Map<String, Object> productMap) { 		
-		ProductPriceInfo productPriceInfo = new ProductPriceInfo();
-		productPriceInfo.setValue( (Double) productMap.get("value") );
-		productPriceInfo.setCurrency_code( (String) productMap.get("currency_code") );		
-		productPriceInfo.setId(id);
-		productPriceService.saveProductPrice(productPriceInfo);		
-		return new ResponseEntity<ProductPriceInfo>( productPriceInfo , HttpStatus.OK);
 	}
 
 	@ExceptionHandler(Throwable.class)
