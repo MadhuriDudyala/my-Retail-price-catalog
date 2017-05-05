@@ -1,6 +1,4 @@
 
-I have Choosen My Retail first assignment from th Case Study documment 
-
 This application interacts with the Mongodb(NOSQL) store to fetch and save the pricing information for a product using Spring Boot Framework. 
 
 Technology:
